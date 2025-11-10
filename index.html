@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acordeon de Imagens</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .accordion {
+            display: flex;
+            height: 500px;
+            gap: 10px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .accordion-item {
+            flex: 1;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            transition: flex 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .accordion-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+            transition: opacity 0.4s ease;
+        }
+
+        .accordion-item:hover::before {
+            opacity: 0.8;
+        }
+
+        .accordion-item.active {
+            flex: 4;
+        }
+
+        .accordion-item.active::before {
+            opacity: 0.5;
+        }
+
+        .accordion-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            color: white;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .accordion-item.active .accordion-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .accordion-content h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .accordion-content p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .accordion-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-90deg);
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            white-space: nowrap;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .accordion-item.active .accordion-label {
+            opacity: 0;
+        }
+
+        @media (max-width: 768px) {
+            .accordion {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .accordion-item {
+                height: 100px;
+            }
+
+            .accordion-item.active {
+                height: 400px;
+            }
+
+            .accordion-label {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Galeria Acordeon</h1>
+        <div class="accordion">
+            <div class="accordion-item active" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800')">
+                <span class="accordion-label">Montanhas</span>
+                <div class="accordion-content">
+                    <h2>Montanhas</h2>
+                    <p>Paisagens majestosas que tocam o céu, oferecendo vistas espetaculares e ar puro.</p>
+                </div>
+            </div>
+            <div class="accordion-item" style="background-image: url('https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800')">
+                <span class="accordion-label">Praia</span>
+                <div class="accordion-content">
+                    <h2>Praia</h2>
+                    <p>Ondas suaves e areias douradas criam o cenário perfeito para relaxamento.</p>
+                </div>
+            </div>
+            <div class="accordion-item" style="background-image: url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800')">
+                <span class="accordion-label">Floresta</span>
+                <div class="accordion-content">
+                    <h2>Floresta</h2>
+                    <p>Natureza exuberante repleta de vida, cores vibrantes e tranquilidade.</p>
+                </div>
+            </div>
+            <div class="accordion-item" style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800')">
+                <span class="accordion-label">Cidade</span>
+                <div class="accordion-content">
+                    <h2>Cidade</h2>
+                    <p>Luzes brilhantes e arquitetura moderna que nunca dorme.</p>
+                </div>
+            </div>
+            <div class="accordion-item" style="background-image: url('https://images.unsplash.com/photo-1418065460487-3e41a6c84dc5?w=800')">
+                <span class="accordion-label">Deserto</span>
+                <div class="accordion-content">
+                    <h2>Deserto</h2>
+                    <p>Vastidão dourada sob céus infinitos, beleza na simplicidade.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const items = document.querySelectorAll('.accordion-item');
+
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                items.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
